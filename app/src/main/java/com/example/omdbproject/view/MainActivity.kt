@@ -1,7 +1,8 @@
-package com.example.omdbproject
+package com.example.omdbproject.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.omdbproject.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
