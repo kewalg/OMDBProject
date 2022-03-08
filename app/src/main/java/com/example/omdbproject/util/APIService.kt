@@ -7,7 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class APIService {
 
-    private val BASE_URL = "https://www.omdbapi.com/"
+    companion object {
+        private const val BASE_URL = "https://www.omdbapi.com/"
+    }
 
     private val seriesAPICall =
         Retrofit.Builder().baseUrl(BASE_URL)
@@ -26,5 +28,4 @@ class APIService {
     fun getSeries3(): Call<SeriesModel> {
         return seriesAPICall.getSeries3Data()
     }
-
 }

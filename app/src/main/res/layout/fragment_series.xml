@@ -7,8 +7,11 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="125dp"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="horizontal">
 
             <ImageView
@@ -52,8 +55,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll2"
             android:layout_width="match_parent"
             android:layout_height="125dp"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="horizontal">
 
             <ImageView
@@ -97,8 +103,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll3"
             android:layout_width="match_parent"
             android:layout_height="125dp"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="horizontal">
 
             <ImageView
@@ -140,6 +149,7 @@
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
 </layout>

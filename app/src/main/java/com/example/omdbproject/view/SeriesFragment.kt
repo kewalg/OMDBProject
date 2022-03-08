@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.example.omdbproject.R
-import com.example.omdbproject.model.SeriesModel
 import com.example.omdbproject.viewmodel.SeriesViewModel
 import kotlinx.android.synthetic.main.fragment_series.*
 
@@ -34,11 +34,29 @@ class SeriesFragment : Fragment() {
         seriesViewModel = ViewModelProvider(this).get(SeriesViewModel::class.java)
         seriesViewModel.getDataForViewModel()
 
+        navigateToEpisodesList()
         observeLiveData()
     }
 
     private fun loadImage(url: String?, imageView: ImageView) {
         Glide.with(this).load(url).into(imageView)
+    }
+
+    private fun navigateToEpisodesList() {
+        ll1.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(SeriesFragmentDirections.actionSeriesFragmentToEpisodesFragment())
+        }
+
+        ll2.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(SeriesFragmentDirections.actionSeriesFragmentToEpisodesFragment())
+        }
+
+        ll3.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(SeriesFragmentDirections.actionSeriesFragmentToEpisodesFragment())
+        }
     }
 
     private fun observeLiveData() {
