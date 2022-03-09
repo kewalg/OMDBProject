@@ -1,7 +1,7 @@
 package com.example.omdbproject.util
 
+import com.example.omdbproject.model.EpisodesDataModel
 import com.example.omdbproject.model.SeriesModel
-import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -17,5 +17,5 @@ interface APIInterface {
     fun getSeries3Data(): Call<SeriesModel>
 
     @GET("?t=Game+Of+Thrones&season=1&apikey=809b203b&type=episodes")
-    fun getEpisodesList(): Call<JsonObject>
+    fun getEpisodesList(): Call<EpisodesDataModel>
 }

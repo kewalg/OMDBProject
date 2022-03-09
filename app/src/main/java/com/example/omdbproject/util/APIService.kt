@@ -1,7 +1,7 @@
 package com.example.omdbproject.util
 
+import com.example.omdbproject.model.EpisodesDataModel
 import com.example.omdbproject.model.SeriesModel
-import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,7 +30,7 @@ class APIService {
         return seriesAPICall.getSeries3Data()
     }
 
-    fun getEpisodesList(): Call<JsonObject> {
+    fun getEpisodesList(): Call<EpisodesDataModel> {
         return seriesAPICall.getEpisodesList()
     }
 }

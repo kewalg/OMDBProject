@@ -8,28 +8,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.omdbproject.R
 import com.example.omdbproject.model.EpisodesDataModel
 import com.google.gson.Gson
-import com.google.gson.JsonObject
+import com.google.gson.JsonElement
 import kotlinx.android.synthetic.main.item_episodes.view.*
 
 class EpisodesListAdapter(val episodesList: ArrayList<EpisodesDataModel.EpisodesList>) :
     RecyclerView.Adapter<EpisodesListAdapter.EpisodesDataViewHolder>() {
 
-    lateinit var entireEpisodePojo: EpisodesDataModel
+    private lateinit var entireEpisodePojo: EpisodesDataModel
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateEpisodeList(jsonObject: JsonObject) {
-        episodesList.clear()
-
-        val responseString = jsonObject.toString()
+    fun convertResponseForList(response: EpisodesDataModel) {
         val gson = Gson()
-        entireEpisodePojo = gson.fromJson(responseString, EpisodesDataModel::class.java)
-
-        val episodesnewList = entireEpisodePojo.episodes!!
-        episodesList.addAll(episodesnewList)
-
-        notifyDataSetChanged()
+        val responseToJsonElement = gson.fromJson(gson.toJson(response), JsonElement::class.java)
+        entireEpisodePojo = gson.fromJson(responseToJsonElement, EpisodesDataModel::class.java)
+        updateEpisodeList(entireEpisodePojo)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateEpisodeList(entireEpisodePojo: EpisodesDataModel) {
+        episodesList.clear()
+        val newEpisodesList = entireEpisodePojo.episodes!!
+        episodesList.addAll(newEpisodesList)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodesDataViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -45,7 +45,6 @@ class EpisodesListAdapter(val episodesList: ArrayList<EpisodesDataModel.Episodes
     }
 
     override fun getItemCount() = episodesList.size
-
 
     class EpisodesDataViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     }
