@@ -22,10 +22,7 @@ class SeriesViewModel : ViewModel() {
         val getSeries2Data = seriesAPIInstance.getSeries2()
         val getSeries3Data = seriesAPIInstance.getSeries3()
         getSeries1Data.enqueue(object : Callback<SeriesModel> {
-            override fun onResponse(
-                call: Call<SeriesModel>,
-                response: Response<SeriesModel>
-            ) {
+            override fun onResponse(call: Call<SeriesModel>, response: Response<SeriesModel>) {
                 series1LiveData.value = response.body()
             }
 
