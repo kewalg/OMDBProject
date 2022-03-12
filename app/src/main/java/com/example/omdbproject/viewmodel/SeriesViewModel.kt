@@ -65,4 +65,10 @@ class SeriesViewModel : ViewModel() {
         )
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        series1Disposable.clear()
+        series2Disposable.clear()
+        series3Disposable.clear()
+    }
 }

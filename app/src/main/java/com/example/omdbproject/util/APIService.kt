@@ -36,7 +36,15 @@ class APIService {
         return seriesAPICall.getSeries3Data()
     }
 
-    fun getEpisodesList(): Call<EpisodesDataModel> {
-        return seriesAPICall.getEpisodesList()
+    fun getGOTEpisodesList(): Single<EpisodesDataModel> {
+        return seriesAPICall.getGOTEpisodesList()
+    }
+
+    fun getFriendsEpisodesList(): Single<EpisodesDataModel> {
+        return seriesAPICall.getFriendsEpisodesList()
+    }
+
+    fun getPeakyBlindersEpisodesList(): Single<EpisodesDataModel> {
+        return seriesAPICall.getPeakyBlindersEpisodesList()
     }
 }

@@ -18,5 +18,11 @@ interface APIInterface {
     fun getSeries3Data(): Single<SeriesModel>
 
     @GET("?t=Game+Of+Thrones&season=1&apikey=809b203b&type=episodes")
-    fun getEpisodesList(): Call<EpisodesDataModel>
+    fun getGOTEpisodesList(): Single<EpisodesDataModel>
+
+    @GET("?t=Friends&season=1&apikey=809b203b&type=episodes")
+    fun getFriendsEpisodesList(): Single<EpisodesDataModel>
+
+    @GET("?t=Peaky+Blinders&season=1&apikey=809b203b&type=episodes")
+    fun getPeakyBlindersEpisodesList(): Single<EpisodesDataModel>
 }

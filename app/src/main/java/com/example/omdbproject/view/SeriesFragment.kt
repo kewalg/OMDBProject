@@ -43,19 +43,23 @@ class SeriesFragment : Fragment() {
     }
 
     private fun navigateToEpisodesList() {
+        val action = SeriesFragmentDirections.actionSeriesFragmentToEpisodesFragment()
         ll1.setOnClickListener {
+            action.keyForSeriesName = series1Name.text.toString()
             Navigation.findNavController(it)
-                .navigate(SeriesFragmentDirections.actionSeriesFragmentToEpisodesFragment())
+                .navigate(action)
         }
 
         ll2.setOnClickListener {
+            action.keyForSeriesName = series2Name.text.toString()
             Navigation.findNavController(it)
-                .navigate(SeriesFragmentDirections.actionSeriesFragmentToEpisodesFragment())
+                .navigate(action)
         }
 
         ll3.setOnClickListener {
+            action.keyForSeriesName = series3Name.text.toString()
             Navigation.findNavController(it)
-                .navigate(SeriesFragmentDirections.actionSeriesFragmentToEpisodesFragment())
+                .navigate(action)
         }
     }
 

@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/seriesFragment"
         android:name="com.example.omdbproject.view.SeriesFragment"
-        android:label="SeriesFragment" >
+        android:label="SeriesFragment">
         <action
             android:id="@+id/action_seriesFragment_to_episodesFragment"
             app:destination="@id/episodesFragment" />
@@ -15,9 +15,13 @@
     <fragment
         android:id="@+id/episodesFragment"
         android:name="com.example.omdbproject.view.EpisodesFragment"
-        android:label="EpisodesFragment" >
+        android:label="EpisodesFragment">
         <action
             android:id="@+id/action_episodesFragment_to_seriesFragment"
             app:destination="@id/seriesFragment" />
+        <argument
+            android:name="keyForSeriesName"
+            android:defaultValue="none"
+            app:argType="string" />
     </fragment>
 </navigation>
