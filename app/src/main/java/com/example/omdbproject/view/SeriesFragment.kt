@@ -32,7 +32,7 @@ class SeriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         seriesViewModel = ViewModelProvider(this).get(SeriesViewModel::class.java)
-        seriesViewModel.getDataForViewModel()
+        seriesViewModel.getDataForViewModelByRxJava()
 
         navigateToEpisodesList()
         observeLiveData()

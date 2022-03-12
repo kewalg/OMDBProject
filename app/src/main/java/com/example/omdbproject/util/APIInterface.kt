@@ -2,19 +2,20 @@ package com.example.omdbproject.util
 
 import com.example.omdbproject.model.EpisodesDataModel
 import com.example.omdbproject.model.SeriesModel
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.GET
 
 interface APIInterface {
 
     @GET("?t=Game+Of+Thrones&apikey=809b203b&type=series")
-    fun getSeries1Data(): Call<SeriesModel>
+    fun getSeries1Data(): Single<SeriesModel>
 
     @GET("?t=Friends&apikey=809b203b&type=series")
-    fun getSeries2Data(): Call<SeriesModel>
+    fun getSeries2Data(): Single<SeriesModel>
 
     @GET("?t=Peaky+Blinders&apikey=809b203b&type=series")
-    fun getSeries3Data(): Call<SeriesModel>
+    fun getSeries3Data(): Single<SeriesModel>
 
     @GET("?t=Game+Of+Thrones&season=1&apikey=809b203b&type=episodes")
     fun getEpisodesList(): Call<EpisodesDataModel>
