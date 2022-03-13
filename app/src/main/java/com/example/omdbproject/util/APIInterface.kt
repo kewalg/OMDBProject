@@ -3,7 +3,6 @@ package com.example.omdbproject.util
 import com.example.omdbproject.model.EpisodesDataModel
 import com.example.omdbproject.model.SeriesModel
 import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.http.GET
 
 interface APIInterface {
@@ -25,4 +24,7 @@ interface APIInterface {
 
     @GET("?t=Peaky+Blinders&season=1&apikey=809b203b&type=episodes")
     fun getPeakyBlindersEpisodesList(): Single<EpisodesDataModel>
+
+    @GET("?t=")
+    fun getBlankEpisodesList(): Single<EpisodesDataModel>
 }

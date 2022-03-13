@@ -2,10 +2,7 @@ package com.example.omdbproject.util
 
 import com.example.omdbproject.model.EpisodesDataModel
 import com.example.omdbproject.model.SeriesModel
-import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,7 +11,6 @@ class APIService {
 
     companion object {
         private const val BASE_URL = "https://www.omdbapi.com/"
-
     }
 
     private val seriesAPICall =
@@ -36,15 +32,12 @@ class APIService {
         return seriesAPICall.getSeries3Data()
     }
 
-    fun getGOTEpisodesList(): Single<EpisodesDataModel> {
-        return seriesAPICall.getGOTEpisodesList()
-    }
-
-    fun getFriendsEpisodesList(): Single<EpisodesDataModel> {
-        return seriesAPICall.getFriendsEpisodesList()
-    }
-
-    fun getPeakyBlindersEpisodesList(): Single<EpisodesDataModel> {
-        return seriesAPICall.getPeakyBlindersEpisodesList()
+    fun getEpisodeList(episodeForSeries: String): Single<EpisodesDataModel> {
+        when (episodeForSeries) {
+            "Game of Thrones" -> return seriesAPICall.getGOTEpisodesList()
+            "Friends" -> return seriesAPICall.getFriendsEpisodesList()
+            "Peaky Blinders" -> return seriesAPICall.getPeakyBlindersEpisodesList()
+        }
+        return seriesAPICall.getBlankEpisodesList()
     }
 }

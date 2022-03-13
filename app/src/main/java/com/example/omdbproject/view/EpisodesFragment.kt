@@ -46,7 +46,7 @@ class EpisodesFragment : Fragment() {
         observeEpisodeLiveData()
     }
 
-    fun observeEpisodeLiveData() {
+    private fun observeEpisodeLiveData() {
         episodesViewModel.episodesLiveData.observe(this, Observer {
             episodeAdapter.convertResponseForList(it)
         })

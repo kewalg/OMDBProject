@@ -17,9 +17,9 @@ class SeriesViewModel : ViewModel() {
     val series2LiveData = MutableLiveData<SeriesModel>()
     val series3LiveData = MutableLiveData<SeriesModel>()
 
-    val series1Disposable = CompositeDisposable()
-    val series2Disposable = CompositeDisposable()
-    val series3Disposable = CompositeDisposable()
+    private val series1Disposable = CompositeDisposable()
+    private val series2Disposable = CompositeDisposable()
+    private val series3Disposable = CompositeDisposable()
 
     fun getDataForViewModelByRxJava() {
         series1Disposable.add(

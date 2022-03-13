@@ -13,13 +13,13 @@ import io.reactivex.schedulers.Schedulers
 class EpisodesViewModel : ViewModel() {
 
     val episodesLiveData = MutableLiveData<EpisodesDataModel>()
-    val episodesDisposable = CompositeDisposable()
+    private val episodesDisposable = CompositeDisposable()
     private val serviceInstance = APIService()
 
     fun getEpisodesData(episodesForSeries: String) {
-        when (episodesForSeries) {
-            "Game of Thrones" -> episodesDisposable.add(
-                serviceInstance.getGOTEpisodesList().subscribeOn(Schedulers.newThread())
+            episodesDisposable.add(
+                serviceInstance.getEpisodeList(episodesForSeries)
+                    .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(object : DisposableSingleObserver<EpisodesDataModel>() {
                         override fun onSuccess(t: EpisodesDataModel) {
@@ -31,32 +31,6 @@ class EpisodesViewModel : ViewModel() {
                         }
                     })
             )
-            "Friends" -> episodesDisposable.add(
-                serviceInstance.getFriendsEpisodesList().subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(object : DisposableSingleObserver<EpisodesDataModel>() {
-                        override fun onSuccess(t: EpisodesDataModel) {
-                            episodesLiveData.value = t
-                        }
 
-                        override fun onError(e: Throwable) {
-                            Log.d("ERROR---------->", e.toString())
-                        }
-                    })
-            )
-            "Peaky Blinders" -> episodesDisposable.add(
-                serviceInstance.getPeakyBlindersEpisodesList().subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(object : DisposableSingleObserver<EpisodesDataModel>() {
-                        override fun onSuccess(t: EpisodesDataModel) {
-                            episodesLiveData.value = t
-                        }
-
-                        override fun onError(e: Throwable) {
-                            Log.d("ERROR---------->", e.toString())
-                        }
-                    })
-            )
-        }
     }
 }
