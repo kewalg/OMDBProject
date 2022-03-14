@@ -17,20 +17,19 @@ class EpisodesViewModel : ViewModel() {
     private val serviceInstance = APIService()
 
     fun getEpisodesData(episodesForSeries: String) {
-            episodesDisposable.add(
-                serviceInstance.getEpisodeList(episodesForSeries)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(object : DisposableSingleObserver<EpisodesDataModel>() {
-                        override fun onSuccess(t: EpisodesDataModel) {
-                            episodesLiveData.value = t
-                        }
+        episodesDisposable.add(
+            serviceInstance.getEpisodeList(episodesForSeries)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<EpisodesDataModel>() {
+                    override fun onSuccess(t: EpisodesDataModel) {
+                        episodesLiveData.value = t
+                    }
 
-                        override fun onError(e: Throwable) {
-                            Log.d("ERROR---------->", e.toString())
-                        }
-                    })
-            )
-
+                    override fun onError(e: Throwable) {
+                        Log.d("ERROR---------->", e.toString())
+                    }
+                })
+        )
     }
 }

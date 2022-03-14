@@ -18,6 +18,7 @@ class EpisodesFragment : Fragment() {
     private lateinit var episodesViewModel: EpisodesViewModel
     private var episodeAdapter = EpisodesListAdapter(arrayListOf())
     private var stringForSeriesName: String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

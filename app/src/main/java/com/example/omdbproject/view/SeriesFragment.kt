@@ -17,10 +17,6 @@ import kotlinx.android.synthetic.main.fragment_series.*
 class SeriesFragment : Fragment() {
     private lateinit var seriesViewModel: SeriesViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +28,7 @@ class SeriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         seriesViewModel = ViewModelProvider(this).get(SeriesViewModel::class.java)
-        seriesViewModel.getDataForViewModelByRxJava()
+        seriesViewModel.getSeriesData()
 
         navigateToEpisodesList()
         observeLiveData()
