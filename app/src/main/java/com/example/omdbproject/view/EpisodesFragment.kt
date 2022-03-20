@@ -49,7 +49,7 @@ class EpisodesFragment : Fragment() {
 
     private fun observeEpisodeLiveData() {
         episodesViewModel.episodesLiveData.observe(this, Observer {
-            episodeAdapter.convertResponseForList(it)
+            episodeAdapter.updateEpisodeList(it)
         })
     }
 }

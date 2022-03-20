@@ -14,20 +14,14 @@ import kotlinx.android.synthetic.main.item_episodes.view.*
 class EpisodesListAdapter(val episodesList: ArrayList<EpisodesDataModel.EpisodesList>) :
     RecyclerView.Adapter<EpisodesListAdapter.EpisodesDataViewHolder>() {
 
-    private lateinit var entireEpisodePojo: EpisodesDataModel
-
-    fun convertResponseForList(response: EpisodesDataModel) {
-        val gson = Gson()
-        val responseToJsonElement = gson.fromJson(gson.toJson(response), JsonElement::class.java)
-        entireEpisodePojo = gson.fromJson(responseToJsonElement, EpisodesDataModel::class.java)
-        updateEpisodeList(entireEpisodePojo)
-    }
+    private lateinit var response: EpisodesDataModel
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateEpisodeList(entireEpisodePojo: EpisodesDataModel) {
+    fun updateEpisodeList(responseObject: EpisodesDataModel) {
+        response = responseObject
+        val responseList = response.episodes
         episodesList.clear()
-        val newEpisodesList = entireEpisodePojo.episodes!!
-        episodesList.addAll(newEpisodesList)
+        episodesList.addAll(responseList!!)
         notifyDataSetChanged()
     }
 
@@ -38,7 +32,7 @@ class EpisodesListAdapter(val episodesList: ArrayList<EpisodesDataModel.Episodes
     }
 
     override fun onBindViewHolder(holder: EpisodesDataViewHolder, position: Int) {
-        holder.view.seasonNo.text = "Season No: " + entireEpisodePojo.Season
+        holder.view.seasonNo.text = "Season No: " + response.Season
         holder.view.episodeTitle.text = "Episode Title: " + episodesList[position].Title
         holder.view.episodeNo.text = "Episode No: " + episodesList[position].Episode
         holder.view.episodeIMDBRating.text = "IMDBRating: " + episodesList[position].imdbRating
@@ -46,6 +40,5 @@ class EpisodesListAdapter(val episodesList: ArrayList<EpisodesDataModel.Episodes
 
     override fun getItemCount() = episodesList.size
 
-    class EpisodesDataViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-    }
+    class EpisodesDataViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 }
